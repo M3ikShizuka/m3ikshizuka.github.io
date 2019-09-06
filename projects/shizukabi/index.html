@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="index, follow">
+    <link rel="shortcut icon" href="/assets/img/ShizukaSystems logo.ico" type="image/x-icon">
+    <!-- Global site tag (gtag.js) - Google Analytics-->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-143760997-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-143760997-2');
+      
+      
+    </script>
+    <!-- Yandex.Metrika counter-->
+    <script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}) (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); ym(55243669, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true });</script>
+    <noscript>
+      <div><img src="https://mc.yandex.ru/watch/55243669" style="position:absolute; left:-9999px;" alt=""></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter-->
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="stylesheet" href="/assets/css/footer.css"><meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:image:width" content="968">
+<meta property="og:image:height" content="504">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:domain" content="m3ikshizuka.github.io">
+<meta name="twitter:site" content="@M3ikShizuka">
+<meta name="twitter:creator" content="@M3ikShizuka">
+    <title>ShizukaBI - Kernel and User mode Binary Instrumentation system for security, research, analysis, development, testing and more.</title>
+    <meta name="description" content="ShizukaBI is a flexible kernel and user mode binary instrumentation system, for instrumentation with or without debug symbols and source code.">
+    <meta name="Keywords" content="ShizukaBI, Dynamic Binary Instrumentation, security, vulnerability research, kernel, kernel mode, user mode, analysis, development, software testing, debug, disassembler, exploit, CVE, Windows, C++, Assembler, Opcode, hack, code, script."><link rel="canonical" href="https://m3ikshizuka.github.io/projects/shizukabi/">
+<meta property="og:title" content="ShizukaBI - Kernel and User mode Binary Instrumentation system for security, research, analysis, development, testing and more.">
+<meta property="og:site_name" content="ShizukaBI">
+<meta property="og:description" content="ShizukaBI is a complex binary instrumentation system designed for flexible instrumentation of target binaries, with and without debug symbols/source code. This system is intended for use in the field of security research, reverse engineering, development and software testing.">
+<meta property="og:url" content="https://m3ikshizuka.github.io/projects/shizukabi/">
+<meta property="og:image" content="http://m3ikshizuka.github.io/assets/img/projects/shizukabi/ShizukaBI storyboard.png">
+<meta name="twitter:title" content="ShizukaBI - Kernel and User mode Binary Instrumentation system for security, research, analysis, development, testing and more.">
+<meta name="twitter:description" content="ShizukaBI is a complex binary instrumentation system designed for flexible instrumentation of target binaries, with and without debug symbols/source code. This system is intended for use in the field of security research, reverse engineering, development and software testing.">
+<meta name="twitter:image:src" content="http://m3ikshizuka.github.io/assets/img/projects/shizukabi/ShizukaBI storyboard.png">
+<meta name="twitter:url" content="https://m3ikshizuka.github.io/projects/shizukabi/">
+<meta itemprop="name" content="ShizukaBI">
+<meta itemprop="description" content="ShizukaBI is a complex binary instrumentation system designed for flexible instrumentation of target binaries, with and without debug symbols/source code. This system is intended for use in the field of security research, reverse engineering, development and software testing.">
+<meta itemprop="image" content="http://m3ikshizuka.github.io/assets/img/projects/shizukabi/ShizukaBI storyboard.png">
+<meta name="msapplication-TileImage" content="/assets/img/projects/shizukabi/ShizukaBI storyboard.png">
+<meta name="application-name" content="ShizukaBI">
+    <link rel="stylesheet" href="/assets/css/projects.css">
+    <link rel="stylesheet" href="/assets/css/about_product.css">
+    <link rel="stylesheet" href="/assets/css/page_boxes.css">
+    <link rel="stylesheet" href="/assets/css/codeblock.css">
+    <link rel="stylesheet" href="/assets/css/githubgist.css">
+    <!-- Code highlights.-->
+    <link rel="stylesheet" href="https://cdn.rawgit.com/lonekorean/gist-syntax-themes/848d6580/stylesheets/monokai.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/vs2015.min.css">
+    <script src="//highlightjs.org/static/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+    <script>
+      hljs.highlightAll();
+      hljs.initHighlightingOnLoad();
+      hljs.initLineNumbersOnLoad();
+      
+    </script>
+  </head>
+  <body class="scrollbar">
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <div class="header_link"><a href="/" rel="author" alt="MAIN">MAIN
+                <div class="link_down_border"></div></a></div>
+          </li>
+          <li>
+            <div class="header_link"><a href="/projects" alt="MY WORKS">MY WORKS
+                <div class="link_down_border"></div></a></div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div class="wrapper">
+        <h1>ShizukaBI</h1>
+        <div class="block_image logo_image">
+          <div class="block_image_content">
+            <div class="block_image_image" style="background-image: URL(&quot;/assets/img/projects/shizukabi/ShizukaBI logo.png&quot;);"></div>
+          </div>
+        </div>
+        <div class="header_block">
+          <h2>Brief description of the developed system</h2>
+          <div class="header_block_underline">
+            <div class="header_block_underline_left"></div>
+            <div class="header_block_underline_right"></div>
+            <div class="clear"></div>
+          </div>
+        </div>
+        <div class="about_product">
+          <p>ShizukaBI is a complex binary instrumentation system designed for flexible instrumentation of target binaries, with and without debug symbols/source code. This system is intended for use in the field of security research, reverse engineering, development and software testing.</p>
+          <h3>Main criteria</h3>
+          <ul>
+            <li>Kernel and user mode instrumentation;</li>
+            <li>Speed of instrumented code shouldn't be greatly reduced;</li>
+            <li>Instrumentation of the smallest basic blocks;</li>
+            <li>Highly customizable instrumentation of basic blocks and functions;</li>
+            <li>Highly customizable hook settings;</li>
+            <li>Flexible interaction setting with other tools (fuzzer, software profiling and analysis tools, etc.);</li>
+            <li>Create new tools based on this instrumentation (Function tracer, event tracer, etc.);</li>
+            <li>Easily apply debug tools to an instrumented program.</li>
+          </ul>
+          <h3>Features</h3>
+          <ul>
+            <li>Binary file analysis:</li>
+            <ul>
+              <li>Detect functions and basic blocks in the target binary with and without debug symbols/source code;</li>
+              <li>Determining the type of target file (format, platform, architecture, etc.);</li>
+              <li>Export/import of analyzed data;</li>
+              <li>Manual modification of analyzed data;</li>
+              <li>Disassembly;</li>
+              <li>Assembly.</li>
+            </ul>
+            <li>Binary file instrumentation:</li>
+            <ul>
+              <li>Dynamic instrumentation of user and kernel mode binaries;</li>
+              <li>Flexible configuration of instrumentation;</li>
+              <li>Flexible configuration of exception capture and handling;</li>
+              <li>Flexible configuration of executable code iterations;</li>
+              <li>Crash handling and crash recovery (Start a new iteration, in the same instance of the running target program, if possible.);</li>
+              <li>Exceptions interception and handling;</li>
+              <li>Fast re-instrumentation of new instances of the target process on new iterations;</li>
+              <li>Flexible configuration of intercept types (hooks);</li>
+              <li>Separate hooks possibility in the specified places of the code.</li>
+              <li>Mechanism for memory allocation at any specified virtual address in kernel mode.</li>
+            </ul>
+            <li>Reverse engineering / Software testing:</li>
+            <ul>
+              <li>Determining offsets and definitions of structures, variables, functions, and other target program and runtime elements, regardless of the build version;</li>
+              <li>Kernel and user mode memory management;</li>
+              <li>Tracking and collecting data about target program and runtime components (memory, events, exceptions, etc.);</li>
+              <li>Tracking and collecting data about kernel and user mode Interaction;</li>
+              <li>Collecting metrics;</li>
+              <li>Collecting code coverage;</li>
+              <li>Trace basic blocks;</li>
+              <li>Trace functions;</li>
+              <li>Trace events.</li>
+            </ul>
+            <li>Vulnerability research:</li>
+            <ul>
+              <li>Ability to implement fuzzer based on this system.</li>
+              <li>Ability to integrate instrumentation into an existing fuzzer.</li>
+              <li>Flexible configuration of interaction between fuzzer and the instrumentation;</li>
+              <li>Flexible wiring harness configuration;</li>
+              <li>Ability to create custom harnesses;</li>
+              <li>Patch vulnerability.</li>
+            </ul>
+          </ul>
+          <h3>Technical part</h3>
+          <table>
+            <tbody>
+              <tr>
+                <th>Technology stack:</th>
+                <td>
+                  <ul>
+                    <li>C</li>
+                    <li>C++</li>
+                    <li>Assembler</li>
+                    <li>WDK</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th>Consist of modules:</th>
+                <td>
+                  <ul>
+                    <li>ShizukaBI - central control system.</li>
+                    <li>ShizukaAnalyzer - binary file analyzer.<br>Based on:
+                      <ul>
+                        <li>Instructions</li>
+                        <li>Sections</li>
+                        <li>Image format</li>
+                        <li>Debug symbols</li>
+                      </ul>
+                    </li>
+                    <li>ShizukaDBI - user mode dynamic binary instrumentation module.<br>Components:
+                      <ul>
+                        <li>ShizukaMemoryManager</li>
+                        <li>ShizukaHook</li>
+                      </ul>
+                    </li>
+                    <li>ShizukaKDBI - kernel mode dynamic binary instrumentation module.<br>Components:
+                      <ul>
+                        <li>ShizukaMemoryManager</li>
+                        <li>ShizukaHook</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th>Libraries and components:</th>
+                <td>
+                  <ul>
+                    <li>ShizukaInjector
+                      <ul>
+                        <li>LoadLibrary</li>
+                        <li>LdrLoadDLL</li>
+                        <li>Reflective DLL Injection</li>
+                      </ul>
+                    </li>
+                    <li>ShizukaMemoryManager
+                      <ul>
+                        <li>Space:
+                          <ul>
+                            <li>Kernel</li>
+                            <li>User</li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>ShizukaHook - Splicing / hook library
+                      <ul>
+                        <li>Space:
+                          <ul>
+                            <li>Kernel</li>
+                            <li>User</li>
+                          </ul>
+                        </li>
+                        <li>Type (standalone and combination):
+                          <ul>
+                            <li>Short (with memory manager)</li>
+                            <li>Near (with memory manager)</li>
+                            <li>Far</li>
+                            <li>Trampoline</li>
+                            <li>Callback</li>
+                            <li>Resume</li>
+                            <li>With argument</li>
+                          </ul>
+                        </li>
+                        <li>Atchitectures:
+                          <ul>
+                            <li>x86-64</li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th>Instrumentation type:</th>
+                <td>
+                  <ul>
+                    <li>Dynamic</li>
+                    <li>Static (in development)</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th>Iteration type:</th>
+                <td>
+                  <ul>
+                    <li>Start-end</li>
+                    <li>Loop</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th>Restore after crash:</th>
+                <td>
+                  <ul>
+                    <li>Recover from a failure, start a new iteration in the same program, if possible</li>
+                    <li>New launch</li>
+                    <li>Prevent blue screen of death (BSOD)</li>
+                    <li>Prevent corruption and loss of recorded data on failure</li>
+                    <li>Keep the system running without rebooting if possible</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th>Other features:</th>
+                <td>
+                  <ul>
+                    <li>Exceptions interception</li>
+                    <li>With & Without debug symbols/source code</li>
+                    <li>Multi-thread support</li>
+                    <li>Memory management</li>
+                    <li>Memory analysis</li>
+                    <li>Stack analysis</li>
+                    <li>Create a memory dump at the specified moment</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th>Client module:</th>
+                <td>
+                  <ul>
+                    <li>Harness</li>
+                    <li>Callbacks</li>
+                    <li>Instrumentation processing</li>
+                    <li>Iteration processing	</li>
+                    <li>Multithread processing</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th>Platforms:</th>
+                <td>
+                  <ul>
+                    <li>Windows</li>
+                    <li>Linux (port in plans)</li>
+                    <li>macOS (port in plans)</li>
+                    <li>Android (port in plans)</li>
+                    <li>iOS (port in plans)</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th>Atchitectures:</th>
+                <td>
+                  <ul>
+                    <li>x86 (not completely)</li>
+                    <li>x86-64</li>
+                    <li>ARM (port in plans)</li>
+                    <li>AArch64(ARM64) (port in plans)</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="header_block">
+          <h2>Found Vulnerabilities</h2>
+          <div class="header_block_underline">
+            <div class="header_block_underline_left"></div>
+            <div class="header_block_underline_right"></div>
+            <div class="clear"></div>
+          </div>
+        </div>
+        <ul>
+          <li>
+            <a href='https://msrc.microsoft.com/update-guide/vulnerability/CVE-2022-21907' target="_blank" class="text_no_decor">
+                <span class="text_color_critical">CVE-2022-21907</span><span class="text_color_def"> CVSSv3.1: </span><span class="text_color_critical">9.8</span><span class="text_color_def">/10 (</span><span class="text_color_critical">CRITICAL</span><span class="text_color_def">)</span><span class="text_color_def"> ー </span><span style="text-decoration: underline;">Microsoft Windows HTTP Protocol Stack Remote Code Execution Vulnerability</span><span class="text_color_def"> [<span class="text_color_critical">RCE</span>, <span class="text_color_critical">Zero-Click</span>, <span class="text_color_critical">Wormable</span>] in Windows kernel</span>
+            </a>
+          </li>
+        </ul>
+        <div class="header_block">
+          <h2>Work progress</h2>
+          <div class="header_block_underline">
+            <div class="header_block_underline_left"></div>
+            <div class="header_block_underline_right"></div>
+            <div class="clear"></div>
+          </div>
+        </div>
+        <div class="components_blocks">
+          <div class="components_block">
+            <div class="header_block">
+              <h3>Kernel mode Tracer based on the ShizukaBI</h3>
+              <div class="header_block_underline">
+                <div class="header_block_underline_left underline_color_3"></div>
+                <div class="header_block_underline_right"></div>
+                <div class="clear"></div>
+              </div>
+            </div>
+            <div class="about_product">
+              <p>Jul 21, 2021</p>
+              <div class="component_desc">
+                A kernel-mode tracer based on the ShizukaBI binary instrumentation system.<br/>
+                Features:
+                <ul>
+                    <li>Instrumentation of basic blocks up to 2 bytes using a custom mechanism to allocate memory at any specified virtual address in kernel mode. (if it is possible to allocate memory close enough for "short jmp")
+                    <li>Failure Handler:
+                        <ul>
+                            <li>Prevent blue screen of death (BSOD).
+                            <li>Prevent corruption and loss of recorded data on failure.
+                            <li>Keep the system continue running without rebooting if possible.
+                        </ul>
+                    <li>Create a memory dump at the specified moment.
+                </ul>
+              </div><img class="img_block" src="/assets/img/projects/shizukabi/kernel-mode-tracer-basic-block-based-on-shizukabi.jpg" alt="Kernel mode tracer basic block based on ShizukaBI." title="Kernel mode tracer basic block based on ShizukaBI.">
+            </div>
+          </div>
+          <div class="components_block">
+            <div class="header_block">
+              <h3>User mode Tracer based on the ShizukaBI</h3>
+              <div class="header_block_underline">
+                <div class="header_block_underline_left underline_color_3"></div>
+                <div class="header_block_underline_right"></div>
+                <div class="clear"></div>
+              </div>
+            </div>
+            <div class="about_product">
+              <p>Jun 5, 2021</p>
+              <div class="component_desc">
+                The user-mode tracer based on the ShizukaBI binary instrumentation system.<br/>
+                Features:
+                <ul>
+                    <li>Highly customizable Anti-Deadlock mechanism. Example: tracing the functions of a memory manager component;</li>
+                    <li>Highly customizable recursion prevention mechanism;</li>
+                    <li>Splice / Hook with data back-up and offset alignment for the stack pointer;</li>
+                    <li>Stack swapping mechanism;</li>
+                    <li>Highly customizable ignore list for instrumentation;</li>
+                    <li>Highly customizable tracing mechanism;</li>
+                    <li>Tracing multithreaded software;</li>
+                    <li>A mechanism for recording the trace data of a thread from the earliest stage of its creation (before the thread performs full initialization of all its structures and transfers control to the start function specified when creating the thread);</li>
+                    <li>Record a data trace of a newly created thread with an ID that has already been used by another terminated thread;</li>
+                    <li>A native memory manager component, for the ability to fully trace the memory management components used by the target program;</li>
+                    <li>Event tracing;</li>
+                    <li>Trace the creation and completion of threads;</li>
+                    <li>Message tracing;</li>
+                    <li>Highly customizable tracing mechanism for recording specific sections of the program and under certain conditions.</li>
+                </ul>
+              </div><img class="img_block" src="/assets/img/projects/shizukabi/user-mode-tracer-multithread-based-on-shizukabi.jpg" alt="User mode tracer multithread based on ShizukaBI." title="User mode tracer multithread based on ShizukaBI.">
+            </div>
+          </div>
+          <div class="components_block">
+            <div class="header_block">
+              <h3>User mode Tracer based on the ShizukaBI</h3>
+              <div class="header_block_underline">
+                <div class="header_block_underline_left underline_color_3"></div>
+                <div class="header_block_underline_right"></div>
+                <div class="clear"></div>
+              </div>
+            </div>
+            <div class="about_product">
+              <p>Apr 8, 2021</p>
+              <div class="component_desc">
+                User mode function tracer based on the dynamic binary instrumentation ShizukaDBI and ShizukaAnalyzer.<br/>
+                Trace with debug symbols/source code and without them.<br/>
+                Detection:
+                <ul>
+                    <li>Stack pointer rewriting;</li>
+                    <li>Stack pointer increasing/decreasing;</li>
+                    <li>Jump and execution another function using the same stack frame.</li>
+                </ul>
+                Trace functions test case:
+                <ul>
+                    <li>Target application "Saek0.exe" with and without debug symbols;</li>
+                    <li>Windows API routine modules: "KernelBase.dll", "ntdll.dll" with debug symbols.</li>
+                </ul>
+              </div><img class="img_block" src="/assets/img/projects/shizukabi/user-mode-tracer-based-on-shizukabi.jpg" alt="User mode tracer based on ShizukaBI." title="User mode tracer based on ShizukaBI.">
+            </div>
+          </div>
+          <div class="components_block">
+            <div class="header_block">
+              <h3>ShizukaAnalyzer</h3>
+              <div class="header_block_underline">
+                <div class="header_block_underline_left underline_color_3"></div>
+                <div class="header_block_underline_right"></div>
+                <div class="clear"></div>
+              </div>
+            </div>
+            <div class="about_product">
+              <p>Mar 13, 2021</p>
+              <div class="component_desc">
+                ShizukaAnalyzer is a binary file analysis tool.
+                Retrieves relative virtual addresses for the target image regardless of it's version. Detecting offsets.
+              </div><img class="img_block" src="/assets/img/projects/shizukabi/detecting-offsets.jpg" alt="Detecting offsets." title="Detecting offsets.">
+            </div>
+          </div>
+          <div class="components_block">
+            <div class="header_block">
+              <h3>ShizukaKDBI</h3>
+              <div class="header_block_underline">
+                <div class="header_block_underline_left underline_color_3"></div>
+                <div class="header_block_underline_right"></div>
+                <div class="clear"></div>
+              </div>
+            </div>
+            <div class="about_product">
+              <p>Mar 11, 2021</p>
+              <div class="component_desc">
+                ShizukaKDBI is a kernel dynamic binary instrumentation tool.<br/>
+                Windows 10 x86-64 memory manager tool.<br/>
+                Mechanism for memory allocation at any specified virtual address in kernel mode. Extension of Windows kernel-mode memory manager component.
+                <ul>
+                    <li>Kernel memory allocation;</li>
+                    <li>Kernel memory mapping;</li>
+                    <li>Kernel memory lock;</li>
+                    <li>Kernel memory unlock;</li>
+                    <li>Kernel memory unmapping;</li>
+                    <li>Kernel memory release.</li>
+                </ul>
+                Paged (nonresident) / nonpaged (resident) memory.
+              </div><img class="img_block" src="/assets/img/projects/shizukabi/mechanism-for-memory-allocation-at-any-specified-virtual-address-in-kernel-mode.jpg" alt="Mechanism for memory allocation at any specified virtual address in kernel mode." title="Mechanism for memory allocation at any specified virtual address in kernel mode.">
+            </div>
+          </div>
+          <div class="components_block">
+            <div class="header_block">
+              <h3>ShizukaKDBI</h3>
+              <div class="header_block_underline">
+                <div class="header_block_underline_left underline_color_3"></div>
+                <div class="header_block_underline_right"></div>
+                <div class="clear"></div>
+              </div>
+            </div>
+            <div class="about_product">
+              <p>Jan 31, 2021</p>
+              <div class="component_desc">
+                ShizukaKDBI is a kernel dynamic binary instrumentation tool.<br/>
+                Windows x86-64 Page table memory manager tool.<br/>
+                View information about virtual address-to-physical address conversion structures for system and user processes.<br/>
+                Monitoring:
+                <ul>
+                    <li>Mapped to physical address;</li>
+                    <li>Virtual address of Page Table Entry;</li>
+                    <li>Virtual address of Page Frame Number Record describing state of physical page;</li>
+                    <li>Virtual address of Prototype Page Table Entry;</li>
+                    <li>Page Table Entry status bits;</li>
+                    <li>Kind of Page Table Entry - describes state of page with data.</li>
+                </ul>
+              </div><img class="img_block" src="/assets/img/projects/shizukabi/page-table-memory-manager-tool.jpg" alt="Page table memory manager tool." title="Page table memory manager tool.">
+            </div>
+          </div>
+          <div class="components_block">
+            <div class="header_block">
+              <h3>ShizukaDBI</h3>
+              <div class="header_block_underline">
+                <div class="header_block_underline_left underline_color_3"></div>
+                <div class="header_block_underline_right"></div>
+                <div class="clear"></div>
+              </div>
+            </div>
+            <div class="about_product">
+              <p>Aug 11, 2020</p>
+              <div class="component_desc">
+                ShizukaDBI is a dynamic binary instrumentation tool.<br/>
+                Processor architecture: x86-64<br/>
+                Hook type: Jump-trampoline<br/>
+                Jump type: Near
+              </div><img class="img_block" src="/assets/img/projects/shizukabi/original-code-vs-instrumented-code.jpg" alt="Original code vs instrumented code." title="Original code vs instrumented code.">
+            </div>
+          </div>
+          <div class="components_block">
+            <div class="header_block">
+              <h3>ShizukaFuzzer v1.0</h3>
+              <div class="header_block_underline">
+                <div class="header_block_underline_left underline_color_3"></div>
+                <div class="header_block_underline_right"></div>
+                <div class="clear"></div>
+              </div>
+            </div>
+            <div class="about_product">
+              <p>Dec 23, 2019</p>
+              <div class="component_desc">
+                ShizukaFuzzer v1.0 based on ShizukaBI - binary instrumentation system.<br/>
+                Binary file analyzer: ShizukaAnalyzer<br/>
+                Instrumentation: ShizukaDBI<br/>
+                Instrumentation type: Dynamic<br/>
+                Iteration type: start-end<br/>
+                Failure handler: recover from a failure, start a new iteration in the same program, if possible.<br/>
+                Initialization of the target process: use of instrumentation data obtained at the first start and initialization of the target process.
+              </div><img class="img_block" src="/assets/img/projects/shizukabi/ShizukaFuzzer.jpg" alt="ShizukaFuzzer v1.0." title="ShizukaFuzzer v1.0.">
+            </div>
+          </div>
+          <div class="components_block">
+            <div class="header_block">
+              <h3>ShizukaDBI</h3>
+              <div class="header_block_underline">
+                <div class="header_block_underline_left underline_color_3"></div>
+                <div class="header_block_underline_right"></div>
+                <div class="clear"></div>
+              </div>
+            </div>
+            <div class="about_product">
+              <p>Nov 18, 2019</p>
+              <div class="component_desc">Dynamic binary instrumentation with “start-end” and “loop“ type iterations. Multiple iteration of instrumented parts of code. Black box testing and analysis.</div><img class="img_block" src="/assets/img/projects/shizukabi/instrumentation-with-multiple-iterations.jpg" alt="Instrumentation with multiple iterations." title="Instrumentation with multiple iterations.">
+            </div>
+          </div>
+          <div class="components_block">
+            <div class="header_block">
+              <h3>ShizukaDBI</h3>
+              <div class="header_block_underline">
+                <div class="header_block_underline_left underline_color_3"></div>
+                <div class="header_block_underline_right"></div>
+                <div class="clear"></div>
+              </div>
+            </div>
+            <div class="about_product">
+              <p>Nov 3, 2019</p>
+              <div class="component_desc">Instrumentation of basic blocks and functions during the execution of compiled binary files. Black box testing and analysis.</div><img class="img_block" src="/assets/img/projects/shizukabi/basic-blocks-and-functions-instrumentation.jpg" alt="Basic blocks and functions instrumentation." title="Basic blocks and functions instrumentation.">
+            </div>
+          </div>
+          <div class="components_block">
+            <div class="header_block">
+              <h3>ShizukaAnalyzer</h3>
+              <div class="header_block_underline">
+                <div class="header_block_underline_left underline_color_3"></div>
+                <div class="header_block_underline_right"></div>
+                <div class="clear"></div>
+              </div>
+            </div>
+            <div class="about_product">
+              <p>Oct 20, 2019</p>
+              <div class="component_desc">Detection of functions and basic blocks in a binary file without software source code. Basic block analyzer. Black box testing and analysis.</div><img class="img_block" src="/assets/img/projects/shizukabi/functions-and-basic-blocks-detection.jpg" alt="Functions and basic blocks detection." title="Functions and basic blocks detection.">
+            </div>
+          </div>
+        </div>
+        <div class="header_block">
+          <h2>Tools based on ShizukaBI</h2>
+          <div class="header_block_underline">
+            <div class="header_block_underline_left"></div>
+            <div class="header_block_underline_right"></div>
+            <div class="clear"></div>
+          </div>
+        </div>
+        <div class="tool_based_block">
+          <div class="header_block" id="ShizukaFuzzer">
+            <h3>ShizukaFuzzer - fuzzer based on ShizukaBI.</h3>
+            <div class="header_block_underline">
+              <div class="header_block_underline_left underline_color_3"></div>
+              <div class="header_block_underline_right"></div>
+              <div class="clear"></div>
+            </div>
+          </div>
+          <div class="about_product">
+            <p> <a href="/projects/vulnerability-research/" target="_blank">Vulnerabilities detected using this fuzzer.</a></p>
+            <h4>Features</h4>
+            <ul>
+              <li>Kernel and user mode fuzzing;</li>
+              <li>Fuzzing multithread application;</li>
+              <li>Data input channels fuzzing;</li>
+              <li>Communication channels fuzzing (network, MSRPC, etc.);</li>
+            </ul>
+          </div>
+          <div class="header_block" id="ShizukaTracer">
+            <h3>Tracer - record target program trace.</h3>
+            <div class="header_block_underline">
+              <div class="header_block_underline_left underline_color_3"></div>
+              <div class="header_block_underline_right"></div>
+              <div class="clear"></div>
+            </div>
+          </div>
+          <div class="about_product">
+            <p>Kernel and User mode tracer. Trace with and without debug symbols/source code.</p>
+            <h4>Features</h4>
+            <ul>
+              <li>Trace with debug symbols/source code and without them.</li>
+              <li>Detection Stack pointer rewriting;</li>
+              <li>Detection Stack pointer increasing/decreasing;</li>
+              <li>Detection Jump and execution another function using the same stack frame.</li>
+              <li>Highly customizable Anti - Deadlock mechanism. Example: tracing the functions of a memory manager component.</li>
+              <li>Highly customizable recursion prevention mechanism.</li>
+              <li>Splice / Hook with data back-up and offset alignment for the stack pointer.</li>
+              <li>Stack swapping mechanism.</li>
+              <li>Highly customizable ignore list for instrumentation.</li>
+              <li>Highly customizable tracing mechanism.</li>
+              <li>Tracing multithreaded software.</li>
+              <li>A mechanism for recording the trace data of a thread from the earliest stage of its creation (before the thread performs full initialization of all its structures and transfers control to the start function specified when creating the thread).</li>
+              <li>Record a data trace of a newly created thread with an ID that has already been used by another terminated thread.</li>
+              <li>A native memory manager component, for the ability to fully trace the memory management components used by the target program.</li>
+              <li>Event tracing.</li>
+              <li>Trace the creation and completion of threads.</li>
+              <li>Message tracing.</li>
+              <li>Highly customizable tracing mechanism for recording specific sections of the program and under certain conditions.</li>
+              <li>Instrumentation of basic blocks up to 2 bytes using a custom mechanism to allocate memory at any specified virtual address in kernel mode. (if it is possible to allocate memory close enough for "short jmp").</li>
+              <li>Prevent blue screen of death (BSOD).</li>
+              <li>Prevent corruption and loss of recorded data on failure.</li>
+              <li>Keep the system running without rebooting if possible.</li>
+              <li>Create a memory dump at the specified moment.</li>
+            </ul>
+            <h4>Example </h4>
+            <p>Record full trace of target program execution.</p>
+            <p>Target data for trace:</p>
+            <ul> 
+              <li>Target application "Saek0.exe"</li>
+              <li>Windows API routine modules:
+                <ul>
+                  <li>KernelBase.dll</li>
+                  <li>ntdll.dll</li>
+                </ul>
+              </li>
+            </ul>
+            <p>Test case:</p>
+            <ol>
+              <li>Record trace with debug symbols for target program.</li>
+              <li>Record trace without debug symbols for target program.</li>
+            </ol>
+            <p>
+              Target program source code.<script src="https://gist.github.com/M3ikShizuka/e63c528e559a0968906f505948156399.js"></script>
+<script src="https://gist.github.com/M3ikShizuka/0cb1cbea4b46888c3d0ff4cd8784a551.js"></script>
+            </p>
+            <h5>Case 1: Record trace with debug symbols for target program.</h5>
+            <p>Execute target process:</p>
+            <div class="mzp_codeblock">
+              <div class="mzp_codeblock_page">
+                <pre> <code class="language-plaintext">D:\Research\Windows\User\Trace>ShizukaBI.exe -tb Saek0.exe
+Main thread: 0x0B60
+Create threads.
+Waiting for execution threads to finish.
+Thread: 0x4F6C func1
+Thread: 0x1A74 func2
+Thread: 0x3010 func3
+Close thread handles.
+</code></pre>
+              </div>
+            </div>
+            <p>Recorded trace of main thread(0x0B60). (File is large and has been truncated. <a href="https://gist.githubusercontent.com/M3ikShizuka/b1c301016884543adaa551ae4edd7570/raw/88b100eba59969c141159ce280e0b9f2e4ffbac1/Trace_main_thread_0x0B60.log" target="_blank">View full file.</a>)</p>
+            <div class="mzp_codeblock">
+              <div class="mzp_codeblock_page">
+                <pre> <code class="language-plaintext">...
+558   558 [3.547000] thread: 0x0B60 |―――――――――――――――― start: Frame: 4 RVA: 0x00001250 Saek0.exe!main
+559   559 [3.547000] thread: 0x0B60 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00001070 Saek0.exe!printf
+560   560 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00001060 Saek0.exe!__local_stdio_printf_options
+561   561 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00001060 Saek0.exe!__local_stdio_printf_options
+562   562 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+563   563 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+564   564 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002A9A0 ntdll.dll!RtlAllocateHeap
+565   565 [3.547000] thread: 0x0B60 |――――――――――――――――――――――――        Frame: 6 PRE: jump to another function and use same stack frame!
+566   566 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002AA20 ntdll.dll!RtlpAllocateHeapInternal
+567   567 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0002B650 ntdll.dll!RtlpLowFragHeapAllocFromContext
+568   568 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――――――― start: Frame: 8 RVA: 0x000043D0 ntdll.dll!RtlpLfhFindClearBitAndSet
+569   569 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――――――― end:   Frame: 8 RVA: 0x000043D0 ntdll.dll!RtlpLfhFindClearBitAndSet
+570   570 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0002B650 ntdll.dll!RtlpLowFragHeapAllocFromContext
+571   571 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002AA20 ntdll.dll!RtlpAllocateHeapInternal
+572   572 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00034B00 KernelBase.dll!GetLastError
+573   573 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00034B00 KernelBase.dll!GetLastError
+574   574 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+575   575 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+576   576 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+577   577 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+578   578 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+579   579 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+580   580 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+581   581 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+582   582 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+583   583 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+584   584 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+585   585 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+586   586 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+587   587 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+588   588 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00034B00 KernelBase.dll!GetLastError
+589   589 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00034B00 KernelBase.dll!GetLastError
+590   590 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+591   591 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+592   592 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+593   593 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+594   594 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+595   595 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+596   596 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+597   597 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+598   598 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+599   599 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+600   600 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+601   601 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+602   602 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002A600 KernelBase.dll!WriteFile
+603   603 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0009CF10 ntdll.dll!NtWriteFile
+604   604 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0009CF10 ntdll.dll!NtWriteFile
+605   605 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002A600 KernelBase.dll!WriteFile
+606   606 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+607   607 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+608   608 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+609   609 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+610   610 [3.547000] thread: 0x0B60 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00001070 Saek0.exe!printf
+611   611 [3.547000] thread: 0x0B60 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00034F00 KernelBase.dll!CreateRemoteThreadEx
+612   612 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00031450 KernelBase.dll!BaseFormatObjectAttributes
+613   613 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00031450 KernelBase.dll!BaseFormatObjectAttributes
+614   614 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00012DE0 ntdll.dll!RtlQueryInformationActivationContext
+615   615 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x00013374 ntdll.dll!RtlpGetActivationContextData
+616   616 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x00013374 ntdll.dll!RtlpGetActivationContextData
+617   617 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0001342C ntdll.dll!RtlpQueryInformationActivationContextBasicInformation
+618   618 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――――――― start: Frame: 8 RVA: 0x000134C0 ntdll.dll!RtlAddRefActivationContext
+619   619 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――――――― end:   Frame: 8 RVA: 0x000134C0 ntdll.dll!RtlAddRefActivationContext
+620   620 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0001342C ntdll.dll!RtlpQueryInformationActivationContextBasicInformation
+621   621 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00012DE0 ntdll.dll!RtlQueryInformationActivationContext
+622   622 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0009E620 ntdll.dll!NtCreateThreadEx
+623   623 [3.547000] thread: 0x0B60 |――――――――――――――――――――――――        Frame: 6 THREAD CREATED handle: 0x7E8 id: 20332 (0x4F6C)
+624   624 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0009E620 ntdll.dll!NtCreateThreadEx
+625   625 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0008E100 KernelBase.dll!__security_check_cookie
+626   626 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0008E100 KernelBase.dll!__security_check_cookie
+627   627 [3.547000] thread: 0x0B60 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00034F00 KernelBase.dll!CreateRemoteThreadEx
+628   628 [3.547000] thread: 0x0B60 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00034F00 KernelBase.dll!CreateRemoteThreadEx
+629   629 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00031450 KernelBase.dll!BaseFormatObjectAttributes
+630   630 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00031450 KernelBase.dll!BaseFormatObjectAttributes
+631   631 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00012DE0 ntdll.dll!RtlQueryInformationActivationContext
+632   632 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x00013374 ntdll.dll!RtlpGetActivationContextData
+633   633 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x00013374 ntdll.dll!RtlpGetActivationContextData
+634   634 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0001342C ntdll.dll!RtlpQueryInformationActivationContextBasicInformation
+635   635 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――――――― start: Frame: 8 RVA: 0x000134C0 ntdll.dll!RtlAddRefActivationContext
+636   636 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――――――― end:   Frame: 8 RVA: 0x000134C0 ntdll.dll!RtlAddRefActivationContext
+637   637 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0001342C ntdll.dll!RtlpQueryInformationActivationContextBasicInformation
+638   638 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00012DE0 ntdll.dll!RtlQueryInformationActivationContext
+639   639 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0009E620 ntdll.dll!NtCreateThreadEx
+640   640 [3.547000] thread: 0x0B60 |――――――――――――――――――――――――        Frame: 6 THREAD CREATED handle: 0x7EC id: 6772 (0x1A74)
+641   641 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0009E620 ntdll.dll!NtCreateThreadEx
+642   642 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0008E100 KernelBase.dll!__security_check_cookie
+643   643 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0008E100 KernelBase.dll!__security_check_cookie
+644   644 [3.547000] thread: 0x0B60 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00034F00 KernelBase.dll!CreateRemoteThreadEx
+645   645 [3.547000] thread: 0x0B60 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00034F00 KernelBase.dll!CreateRemoteThreadEx
+646   646 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00031450 KernelBase.dll!BaseFormatObjectAttributes
+647   647 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00031450 KernelBase.dll!BaseFormatObjectAttributes
+648   648 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00012DE0 ntdll.dll!RtlQueryInformationActivationContext
+649   649 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x00013374 ntdll.dll!RtlpGetActivationContextData
+650   650 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x00013374 ntdll.dll!RtlpGetActivationContextData
+651   651 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0001342C ntdll.dll!RtlpQueryInformationActivationContextBasicInformation
+652   652 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――――――― start: Frame: 8 RVA: 0x000134C0 ntdll.dll!RtlAddRefActivationContext
+653   653 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――――――― end:   Frame: 8 RVA: 0x000134C0 ntdll.dll!RtlAddRefActivationContext
+654   654 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0001342C ntdll.dll!RtlpQueryInformationActivationContextBasicInformation
+655   655 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00012DE0 ntdll.dll!RtlQueryInformationActivationContext
+656   656 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0009E620 ntdll.dll!NtCreateThreadEx
+657   657 [3.547000] thread: 0x0B60 |――――――――――――――――――――――――        Frame: 6 THREAD CREATED handle: 0x7C0 id: 12304 (0x3010)
+658   658 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0009E620 ntdll.dll!NtCreateThreadEx
+659   659 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0008E100 KernelBase.dll!__security_check_cookie
+660   660 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0008E100 KernelBase.dll!__security_check_cookie
+661   661 [3.547000] thread: 0x0B60 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00034F00 KernelBase.dll!CreateRemoteThreadEx
+662   662 [3.547000] thread: 0x0B60 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00001070 Saek0.exe!printf
+663   663 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00001060 Saek0.exe!__local_stdio_printf_options
+664   664 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00001060 Saek0.exe!__local_stdio_printf_options
+665   665 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+666   666 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+667   667 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+668   668 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+669   669 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00034B00 KernelBase.dll!GetLastError
+670   670 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00034B00 KernelBase.dll!GetLastError
+671   671 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+672   672 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+673   673 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+674   674 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+675   675 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+676   676 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+677   677 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+678   678 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+679   679 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+680   680 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+681   681 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+682   682 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+683   683 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002A600 KernelBase.dll!WriteFile
+684   684 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0009CF10 ntdll.dll!NtWriteFile
+685   685 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0009CF10 ntdll.dll!NtWriteFile
+686   686 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002A600 KernelBase.dll!WriteFile
+687   687 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+688   688 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+689   689 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+690   690 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+691   691 [3.547000] thread: 0x0B60 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00001070 Saek0.exe!printf
+692   692 [3.547000] thread: 0x0B60 |―――――――――――――――――――― start: Frame: 5 RVA: 0x0004C490 KernelBase.dll!WaitForMultipleObjects
+693   693 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0004C4B0 KernelBase.dll!WaitForMultipleObjectsEx
+694   694 [3.547000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0009D960 ntdll.dll!NtWaitForMultipleObjects
+7793   695 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0009D960 ntdll.dll!NtWaitForMultipleObjects
+7794   696 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0008E100 KernelBase.dll!__security_check_cookie
+7795   697 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0008E100 KernelBase.dll!__security_check_cookie
+7796   698 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0004C4B0 KernelBase.dll!WaitForMultipleObjectsEx
+7797   699 [3.578000] thread: 0x0B60 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0004C490 KernelBase.dll!WaitForMultipleObjects
+7798   700 [3.578000] thread: 0x0B60 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00001070 Saek0.exe!printf
+7799   701 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00001060 Saek0.exe!__local_stdio_printf_options
+7800   702 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00001060 Saek0.exe!__local_stdio_printf_options
+7801   703 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+7802   704 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+7803   705 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+7804   706 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+7805   707 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00034B00 KernelBase.dll!GetLastError
+7806   708 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00034B00 KernelBase.dll!GetLastError
+7807   709 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+7808   710 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+7809   711 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+7810   712 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+7811   713 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+7812   714 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+7813   715 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+7814   716 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+7815   717 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+7816   718 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+7817   719 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+7818   720 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+7819   721 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002A600 KernelBase.dll!WriteFile
+7820   722 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0009CF10 ntdll.dll!NtWriteFile
+7821   723 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0009CF10 ntdll.dll!NtWriteFile
+7822   724 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002A600 KernelBase.dll!WriteFile
+7823   725 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+7824   726 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+7825   727 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+7826   728 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+7827   729 [3.578000] thread: 0x0B60 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00001070 Saek0.exe!printf
+7828   730 [3.578000] thread: 0x0B60 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00029F70 KernelBase.dll!CloseHandle
+7829   731 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0003E0D0 ntdll.dll!SbSelectProcedure
+7830   732 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x000A3EC0 ntdll.dll!memset
+7831   733 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x000A3EC0 ntdll.dll!memset
+7832   734 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+7833   735 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+7834   736 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0003E0D0 ntdll.dll!SbSelectProcedure
+7835   737 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x000629D0 KernelBase.dll!SwitchedCloseHandleNoRaiseUMException_WinBLUE
+7836   738 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x000629D0 KernelBase.dll!SwitchedCloseHandleNoRaiseUMException_WinBLUE
+7837   739 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0009CFF0 ntdll.dll!NtClose
+7838   740 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0009CFF0 ntdll.dll!NtClose
+7839   741 [3.578000] thread: 0x0B60 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00029F70 KernelBase.dll!CloseHandle
+7840   742 [3.578000] thread: 0x0B60 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00029F70 KernelBase.dll!CloseHandle
+7841   743 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0003E0D0 ntdll.dll!SbSelectProcedure
+7842   744 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x000A3EC0 ntdll.dll!memset
+7843   745 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x000A3EC0 ntdll.dll!memset
+7844   746 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+7845   747 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+7846   748 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0003E0D0 ntdll.dll!SbSelectProcedure
+7847   749 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x000629D0 KernelBase.dll!SwitchedCloseHandleNoRaiseUMException_WinBLUE
+7848   750 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x000629D0 KernelBase.dll!SwitchedCloseHandleNoRaiseUMException_WinBLUE
+7849   751 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0009CFF0 ntdll.dll!NtClose
+7850   752 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0009CFF0 ntdll.dll!NtClose
+7851   753 [3.578000] thread: 0x0B60 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00029F70 KernelBase.dll!CloseHandle
+7852   754 [3.578000] thread: 0x0B60 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00029F70 KernelBase.dll!CloseHandle
+7853   755 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0003E0D0 ntdll.dll!SbSelectProcedure
+7854   756 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x000A3EC0 ntdll.dll!memset
+7855   757 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x000A3EC0 ntdll.dll!memset
+7856   758 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+7857   759 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+7858   760 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0003E0D0 ntdll.dll!SbSelectProcedure
+7859   761 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x000629D0 KernelBase.dll!SwitchedCloseHandleNoRaiseUMException_WinBLUE
+7860   762 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x000629D0 KernelBase.dll!SwitchedCloseHandleNoRaiseUMException_WinBLUE
+7861   763 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0009CFF0 ntdll.dll!NtClose
+7862   764 [3.578000] thread: 0x0B60 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0009CFF0 ntdll.dll!NtClose
+7863   765 [3.578000] thread: 0x0B60 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00029F70 KernelBase.dll!CloseHandle
+7864   766 [3.578000] thread: 0x0B60 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00001590 Saek0.exe!__security_check_cookie
+7865   767 [3.578000] thread: 0x0B60 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00001590 Saek0.exe!__security_check_cookie
+7866   768 [3.578000] thread: 0x0B60 |―――――――――――――――― end:   Frame: 4 RVA: 0x00001250 Saek0.exe!main
+...
+</code></pre>
+              </div>
+            </div>
+            <p>Recorded trace of next created thread(0x4F6C) func1. (File is large and has been truncated. <a href="https://gist.githubusercontent.com/M3ikShizuka/b1c301016884543adaa551ae4edd7570/raw/88b100eba59969c141159ce280e0b9f2e4ffbac1/Trace_thread_0x4F6C.log" target="_blank">View full file.</a>)</p>
+            <div class="mzp_codeblock">
+              <div class="mzp_codeblock_page">
+                <pre> <code class="language-plaintext">...
+2310  1122 [3.563000] thread: 0x4F6C |―――――――――――― start: Frame: 3 RVA: 0x00001360 Saek0.exe!?func1@@YAKPEAX@Z
+2312  1123 [3.563000] thread: 0x4F6C |―――――――――――――――― start: Frame: 4 RVA: 0x00001070 Saek0.exe!printf
+2314  1124 [3.563000] thread: 0x4F6C |―――――――――――――――――――― start: Frame: 5 RVA: 0x00001060 Saek0.exe!__local_stdio_printf_options
+2316  1125 [3.563000] thread: 0x4F6C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00001060 Saek0.exe!__local_stdio_printf_options
+2318  1126 [3.563000] thread: 0x4F6C |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+2320  1127 [3.563000] thread: 0x4F6C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+2323  1128 [3.563000] thread: 0x4F6C |―――――――――――――――――――― start: Frame: 5 RVA: 0x00034B00 KernelBase.dll!GetLastError
+2325  1129 [3.563000] thread: 0x4F6C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00034B00 KernelBase.dll!GetLastError
+2327  1130 [3.563000] thread: 0x4F6C |―――――――――――――――――――― start: Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+2329  1131 [3.563000] thread: 0x4F6C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+2331  1132 [3.563000] thread: 0x4F6C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+2333  1133 [3.563000] thread: 0x4F6C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+2335  1134 [3.563000] thread: 0x4F6C |―――――――――――――――――――― start: Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+2337  1135 [3.563000] thread: 0x4F6C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+2339  1136 [3.563000] thread: 0x4F6C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+2341  1137 [3.563000] thread: 0x4F6C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+2343  1138 [3.563000] thread: 0x4F6C |―――――――――――――――――――― start: Frame: 5 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+2345  1139 [3.563000] thread: 0x4F6C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+2347  1140 [3.563000] thread: 0x4F6C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+2349  1141 [3.563000] thread: 0x4F6C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+2352  1142 [3.563000] thread: 0x4F6C |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+2354  1143 [3.563000] thread: 0x4F6C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+2356  1144 [3.563000] thread: 0x4F6C |―――――――――――――――――――― start: Frame: 5 RVA: 0x00034B00 KernelBase.dll!GetLastError
+2358  1145 [3.563000] thread: 0x4F6C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00034B00 KernelBase.dll!GetLastError
+2361  1146 [3.563000] thread: 0x4F6C |―――――――――――――――――――― start: Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+2363  1147 [3.563000] thread: 0x4F6C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+2365  1148 [3.563000] thread: 0x4F6C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+2367  1149 [3.563000] thread: 0x4F6C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+2369  1150 [3.563000] thread: 0x4F6C |―――――――――――――――――――― start: Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+2370  1151 [3.563000] thread: 0x4F6C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+2371  1152 [3.563000] thread: 0x4F6C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+2372  1153 [3.563000] thread: 0x4F6C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+2373  1154 [3.563000] thread: 0x4F6C |―――――――――――――――――――― start: Frame: 5 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+2374  1155 [3.563000] thread: 0x4F6C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+2375  1156 [3.563000] thread: 0x4F6C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+2376  1157 [3.563000] thread: 0x4F6C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+2377  1158 [3.563000] thread: 0x4F6C |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002A600 KernelBase.dll!WriteFile
+2378  1159 [3.563000] thread: 0x4F6C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0009CF10 ntdll.dll!NtWriteFile
+2404  1160 [3.563000] thread: 0x4F6C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0009CF10 ntdll.dll!NtWriteFile
+2406  1161 [3.563000] thread: 0x4F6C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002A600 KernelBase.dll!WriteFile
+2408  1162 [3.563000] thread: 0x4F6C |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+2410  1163 [3.563000] thread: 0x4F6C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+2412  1164 [3.563000] thread: 0x4F6C |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+2414  1165 [3.563000] thread: 0x4F6C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+2415  1166 [3.563000] thread: 0x4F6C |―――――――――――――――― end:   Frame: 4 RVA: 0x00001070 Saek0.exe!printf
+2417  1167 [3.563000] thread: 0x4F6C |―――――――――――――――― start: Frame: 4 RVA: 0x000014FF Saek0.exe!TestRewriteStack
+2419  1168 [3.563000] thread: 0x4F6C |―――――――――――――――――――― start: Frame: 5 RVA: 0x0000150D Saek0.exe!TestRewriteStackSub1
+2421  1169 [3.563000] thread: 0x4F6C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0000151B Saek0.exe!TestRewriteStackSub2
+2423  1170 [3.563000] thread: 0x4F6C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x00001529 Saek0.exe!TestRewriteStackSub3
+2425  1171 [3.563000] thread: 0x4F6C |――――――――――――――――――――――――――――        Frame: 7 POST: The stack pointer has been rewritten!
+2426  1172 [3.563000] thread: 0x4F6C |――――――――――――        Frame: 3 POST: The stack pointer has been increased!
+2427  1173 [3.563000] thread: 0x4F6C |―――――――――――――――― end:   Frame: 4 RVA: 0x000014FF Saek0.exe!TestRewriteStack
+2429  1174 [3.563000] thread: 0x4F6C |―――――――――――― end:   Frame: 3 RVA: 0x00001360 Saek0.exe!?func1@@YAKPEAX@Z
+...
+</code></pre>
+              </div>
+            </div>
+            <p>Recorded trace of next created thread(0x1A74) func2. (File is large and has been truncated. <a href="https://gist.githubusercontent.com/M3ikShizuka/b1c301016884543adaa551ae4edd7570/raw/88b100eba59969c141159ce280e0b9f2e4ffbac1/Trace_thread_0x1A74.log" target="_blank">View full file.</a>)</p>
+            <div class="mzp_codeblock">
+              <div class="mzp_codeblock_page">
+                <pre> <code class="language-plaintext">...
+3500  1166 [3.563000] thread: 0x1A74 |―――――――――――― start: Frame: 3 RVA: 0x00001390 Saek0.exe!?func2@@YAKPEAX@Z
+3501  1167 [3.563000] thread: 0x1A74 |―――――――――――――――― start: Frame: 4 RVA: 0x00001070 Saek0.exe!printf
+3503  1168 [3.563000] thread: 0x1A74 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00001060 Saek0.exe!__local_stdio_printf_options
+3505  1169 [3.563000] thread: 0x1A74 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00001060 Saek0.exe!__local_stdio_printf_options
+3507  1170 [3.563000] thread: 0x1A74 |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+3509  1171 [3.563000] thread: 0x1A74 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+3512  1172 [3.563000] thread: 0x1A74 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00034B00 KernelBase.dll!GetLastError
+3513  1173 [3.563000] thread: 0x1A74 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00034B00 KernelBase.dll!GetLastError
+3515  1174 [3.563000] thread: 0x1A74 |―――――――――――――――――――― start: Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+3517  1175 [3.563000] thread: 0x1A74 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+3519  1176 [3.563000] thread: 0x1A74 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+3521  1177 [3.563000] thread: 0x1A74 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+3523  1178 [3.563000] thread: 0x1A74 |―――――――――――――――――――― start: Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+3526  1179 [3.563000] thread: 0x1A74 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+3528  1180 [3.563000] thread: 0x1A74 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+3529  1181 [3.563000] thread: 0x1A74 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+3531  1182 [3.563000] thread: 0x1A74 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+3533  1183 [3.563000] thread: 0x1A74 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+3535  1184 [3.563000] thread: 0x1A74 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+3537  1185 [3.563000] thread: 0x1A74 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+3540  1186 [3.563000] thread: 0x1A74 |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+3542  1187 [3.563000] thread: 0x1A74 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+3544  1188 [3.563000] thread: 0x1A74 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00034B00 KernelBase.dll!GetLastError
+3546  1189 [3.563000] thread: 0x1A74 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00034B00 KernelBase.dll!GetLastError
+3548  1190 [3.563000] thread: 0x1A74 |―――――――――――――――――――― start: Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+3550  1191 [3.563000] thread: 0x1A74 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+3553  1192 [3.563000] thread: 0x1A74 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+3555  1193 [3.563000] thread: 0x1A74 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+3557  1194 [3.563000] thread: 0x1A74 |―――――――――――――――――――― start: Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+3559  1195 [3.563000] thread: 0x1A74 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+3560  1196 [3.563000] thread: 0x1A74 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+3562  1197 [3.563000] thread: 0x1A74 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+3563  1198 [3.563000] thread: 0x1A74 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+3564  1199 [3.563000] thread: 0x1A74 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+3565  1200 [3.563000] thread: 0x1A74 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+3566  1201 [3.563000] thread: 0x1A74 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+3567  1202 [3.563000] thread: 0x1A74 |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002A600 KernelBase.dll!WriteFile
+3568  1203 [3.563000] thread: 0x1A74 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0009CF10 ntdll.dll!NtWriteFile
+3581  1204 [3.563000] thread: 0x1A74 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0009CF10 ntdll.dll!NtWriteFile
+3583  1205 [3.563000] thread: 0x1A74 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002A600 KernelBase.dll!WriteFile
+3585  1206 [3.563000] thread: 0x1A74 |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+3587  1207 [3.563000] thread: 0x1A74 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+3589  1208 [3.563000] thread: 0x1A74 |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+3591  1209 [3.563000] thread: 0x1A74 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+3593  1210 [3.563000] thread: 0x1A74 |―――――――――――――――― end:   Frame: 4 RVA: 0x00001070 Saek0.exe!printf
+3595  1211 [3.563000] thread: 0x1A74 |―――――――――――――――― start: Frame: 4 RVA: 0x0000152E Saek0.exe!TestJumpFunc
+3597  1212 [3.563000] thread: 0x1A74 |――――――――――――――――        Frame: 4 PRE: jump to another function and use same stack frame!
+3598  1213 [3.563000] thread: 0x1A74 |―――――――――――――――― start: Frame: 4 RVA: 0x0000153C Saek0.exe!TestJumpFuncDst
+3600  1214 [3.563000] thread: 0x1A74 |―――――――――――――――― end:   Frame: 4 RVA: 0x0000153C Saek0.exe!TestJumpFuncDst
+3602  1215 [3.563000] thread: 0x1A74 |―――――――――――― end:   Frame: 3 RVA: 0x00001390 Saek0.exe!?func2@@YAKPEAX@Z
+...
+</code></pre>
+              </div>
+            </div>
+            <p>Recorded trace of next created thread(0x3010) func3. (File is large and has been truncated. <a href="https://gist.githubusercontent.com/M3ikShizuka/b1c301016884543adaa551ae4edd7570/raw/88b100eba59969c141159ce280e0b9f2e4ffbac1/Trace_thread_0x3010.log" target="_blank">View full file.</a>)</p>
+            <div class="mzp_codeblock">
+              <div class="mzp_codeblock_page">
+                <pre> <code class="language-plaintext">...
+4653  1206 [3.563000] thread: 0x3010 |―――――――――――― start: Frame: 3 RVA: 0x000013C0 Saek0.exe!?func3@@YAKPEAX@Z
+4654  1207 [3.563000] thread: 0x3010 |―――――――――――――――― start: Frame: 4 RVA: 0x00001070 Saek0.exe!printf
+4655  1208 [3.563000] thread: 0x3010 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00001060 Saek0.exe!__local_stdio_printf_options
+4656  1209 [3.563000] thread: 0x3010 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00001060 Saek0.exe!__local_stdio_printf_options
+4657  1210 [3.563000] thread: 0x3010 |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+4659  1211 [3.563000] thread: 0x3010 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+4661  1212 [3.563000] thread: 0x3010 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00034B00 KernelBase.dll!GetLastError
+4663  1213 [3.563000] thread: 0x3010 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00034B00 KernelBase.dll!GetLastError
+4665  1214 [3.563000] thread: 0x3010 |―――――――――――――――――――― start: Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+4667  1215 [3.563000] thread: 0x3010 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+4669  1216 [3.563000] thread: 0x3010 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+4672  1217 [3.563000] thread: 0x3010 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+4674  1218 [3.563000] thread: 0x3010 |―――――――――――――――――――― start: Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+4676  1219 [3.563000] thread: 0x3010 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+4678  1220 [3.563000] thread: 0x3010 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+4680  1221 [3.563000] thread: 0x3010 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+4682  1222 [3.563000] thread: 0x3010 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+4684  1223 [3.563000] thread: 0x3010 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+4686  1224 [3.563000] thread: 0x3010 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+4688  1225 [3.563000] thread: 0x3010 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+4690  1226 [3.563000] thread: 0x3010 |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+4692  1227 [3.563000] thread: 0x3010 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+4694  1228 [3.563000] thread: 0x3010 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00034B00 KernelBase.dll!GetLastError
+4696  1229 [3.563000] thread: 0x3010 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00034B00 KernelBase.dll!GetLastError
+4698  1230 [3.563000] thread: 0x3010 |―――――――――――――――――――― start: Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+4700  1231 [3.563000] thread: 0x3010 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+4702  1232 [3.563000] thread: 0x3010 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+4704  1233 [3.563000] thread: 0x3010 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+4706  1234 [3.563000] thread: 0x3010 |―――――――――――――――――――― start: Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+4708  1235 [3.563000] thread: 0x3010 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+4710  1236 [3.563000] thread: 0x3010 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+4712  1237 [3.563000] thread: 0x3010 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+4714  1238 [3.563000] thread: 0x3010 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+4716  1239 [3.563000] thread: 0x3010 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+4718  1240 [3.563000] thread: 0x3010 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+4720  1241 [3.563000] thread: 0x3010 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+4722  1242 [3.563000] thread: 0x3010 |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002A600 KernelBase.dll!WriteFile
+4724  1243 [3.563000] thread: 0x3010 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0009CF10 ntdll.dll!NtWriteFile
+4760  1244 [3.563000] thread: 0x3010 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0009CF10 ntdll.dll!NtWriteFile
+4762  1245 [3.563000] thread: 0x3010 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002A600 KernelBase.dll!WriteFile
+4764  1246 [3.563000] thread: 0x3010 |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+4766  1247 [3.563000] thread: 0x3010 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+4768  1248 [3.563000] thread: 0x3010 |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+4770  1249 [3.563000] thread: 0x3010 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+4772  1250 [3.563000] thread: 0x3010 |―――――――――――――――― end:   Frame: 4 RVA: 0x00001070 Saek0.exe!printf
+4774  1251 [3.563000] thread: 0x3010 |―――――――――――――――― start: Frame: 4 RVA: 0x00001548 Saek0.exe!TestRetJumpFunc
+4776  1252 [3.563000] thread: 0x3010 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00001568 Saek0.exe!TestRetJumpFuncDst
+4778  1253 [3.563000] thread: 0x3010 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00001568 Saek0.exe!TestRetJumpFuncDst
+4780  1254 [3.563000] thread: 0x3010 |―――――――――――――――― end:   Frame: 4 RVA: 0x00001548 Saek0.exe!TestRetJumpFunc
+4782  1255 [3.563000] thread: 0x3010 |―――――――――――― end:   Frame: 3 RVA: 0x000013C0 Saek0.exe!?func3@@YAKPEAX@Z
+...       </code></pre>
+              </div>
+            </div>
+            <h5>Case 2: Record trace without debug symbols for target program.</h5>
+            <p>Execute target process:</p>
+            <div class="mzp_codeblock">
+              <div class="mzp_codeblock_page">
+                <pre> <code class="language-plaintext">D:\Research\Windows\User\Trace>ShizukaBI.exe -tb Saek0.exe
+Main thread: 0x417C
+Create threads.
+Waiting for execution threads to finish.
+Thread: 0x512C func1
+Thread: 0x5290 func2
+Thread: 0x53FC func3
+Close thread handles.
+</code></pre>
+              </div>
+            </div>
+            <p>Recorded trace of main thread(0x417C). (File is large and has been truncated. <a href="https://gist.githubusercontent.com/M3ikShizuka/99c0509cd94cc8aee4b842199a5c2145/raw/abc9e1c1cdcf086948208c2205e0802f35dd81f9/Trace_main_thread_0x417C.log" target="_blank">View full file.</a>)</p>
+            <div class="mzp_codeblock">
+              <div class="mzp_codeblock_page">
+                <pre> <code class="language-plaintext">...
+ 558   558 [3.563000] thread: 0x417C |―――――――――――――――― start: Frame: 4 RVA: 0x00001250 Saek0.exe!main
+ 559   559 [3.563000] thread: 0x417C |―――――――――――――――――――― start: Frame: 5 RVA: 0x00001070 Saek0.exe!sub_140001070
+ 560   560 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00001060 Saek0.exe!sub_140001060
+ 561   561 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00001060 Saek0.exe!sub_140001060
+ 562   562 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+ 563   563 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+ 564   564 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002A9A0 ntdll.dll!RtlAllocateHeap
+ 565   565 [3.563000] thread: 0x417C |――――――――――――――――――――――――        Frame: 6 PRE: jump to another function and use same stack frame!
+ 566   566 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002AA20 ntdll.dll!RtlpAllocateHeapInternal
+ 567   567 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0002B650 ntdll.dll!RtlpLowFragHeapAllocFromContext
+ 568   568 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――――――― start: Frame: 8 RVA: 0x000043D0 ntdll.dll!RtlpLfhFindClearBitAndSet
+ 569   569 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――――――― end:   Frame: 8 RVA: 0x000043D0 ntdll.dll!RtlpLfhFindClearBitAndSet
+ 570   570 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0002B650 ntdll.dll!RtlpLowFragHeapAllocFromContext
+ 571   571 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002AA20 ntdll.dll!RtlpAllocateHeapInternal
+ 572   572 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00034B00 KernelBase.dll!GetLastError
+ 573   573 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00034B00 KernelBase.dll!GetLastError
+ 574   574 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 575   575 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 576   576 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 577   577 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 578   578 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 579   579 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 580   580 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 581   581 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 582   582 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+ 583   583 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+ 584   584 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+ 585   585 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+ 586   586 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+ 587   587 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+ 588   588 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00034B00 KernelBase.dll!GetLastError
+ 589   589 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00034B00 KernelBase.dll!GetLastError
+ 590   590 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 591   591 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 592   592 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 593   593 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 594   594 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 595   595 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 596   596 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 597   597 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 598   598 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+ 599   599 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+ 600   600 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+ 601   601 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+ 602   602 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002A600 KernelBase.dll!WriteFile
+ 603   603 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0009CF10 ntdll.dll!NtWriteFile
+ 604   604 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0009CF10 ntdll.dll!NtWriteFile
+ 605   605 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002A600 KernelBase.dll!WriteFile
+ 606   606 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+ 607   607 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+ 608   608 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+ 609   609 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+ 610   610 [3.563000] thread: 0x417C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00001070 Saek0.exe!sub_140001070
+ 611   611 [3.563000] thread: 0x417C |―――――――――――――――――――― start: Frame: 5 RVA: 0x00034F00 KernelBase.dll!CreateRemoteThreadEx
+ 612   612 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00031450 KernelBase.dll!BaseFormatObjectAttributes
+ 613   613 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00031450 KernelBase.dll!BaseFormatObjectAttributes
+ 614   614 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00012DE0 ntdll.dll!RtlQueryInformationActivationContext
+ 615   615 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x00013374 ntdll.dll!RtlpGetActivationContextData
+ 616   616 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x00013374 ntdll.dll!RtlpGetActivationContextData
+ 617   617 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0001342C ntdll.dll!RtlpQueryInformationActivationContextBasicInformation
+ 618   618 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――――――― start: Frame: 8 RVA: 0x000134C0 ntdll.dll!RtlAddRefActivationContext
+ 619   619 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――――――― end:   Frame: 8 RVA: 0x000134C0 ntdll.dll!RtlAddRefActivationContext
+ 620   620 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0001342C ntdll.dll!RtlpQueryInformationActivationContextBasicInformation
+ 621   621 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00012DE0 ntdll.dll!RtlQueryInformationActivationContext
+ 622   622 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0009E620 ntdll.dll!NtCreateThreadEx
+ 623   623 [3.563000] thread: 0x417C |――――――――――――――――――――――――        Frame: 6 THREAD CREATED handle: 0x7E0 id: 20780 (0x512C)
+ 624   624 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0009E620 ntdll.dll!NtCreateThreadEx
+ 625   625 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0008E100 KernelBase.dll!__security_check_cookie
+ 626   626 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0008E100 KernelBase.dll!__security_check_cookie
+ 627   627 [3.563000] thread: 0x417C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00034F00 KernelBase.dll!CreateRemoteThreadEx
+ 628   628 [3.563000] thread: 0x417C |―――――――――――――――――――― start: Frame: 5 RVA: 0x00034F00 KernelBase.dll!CreateRemoteThreadEx
+ 629   629 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00031450 KernelBase.dll!BaseFormatObjectAttributes
+ 630   630 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00031450 KernelBase.dll!BaseFormatObjectAttributes
+ 631   631 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00012DE0 ntdll.dll!RtlQueryInformationActivationContext
+ 632   632 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x00013374 ntdll.dll!RtlpGetActivationContextData
+ 633   633 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x00013374 ntdll.dll!RtlpGetActivationContextData
+ 634   634 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0001342C ntdll.dll!RtlpQueryInformationActivationContextBasicInformation
+ 635   635 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――――――― start: Frame: 8 RVA: 0x000134C0 ntdll.dll!RtlAddRefActivationContext
+ 636   636 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――――――― end:   Frame: 8 RVA: 0x000134C0 ntdll.dll!RtlAddRefActivationContext
+ 637   637 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0001342C ntdll.dll!RtlpQueryInformationActivationContextBasicInformation
+ 638   638 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00012DE0 ntdll.dll!RtlQueryInformationActivationContext
+ 639   639 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0009E620 ntdll.dll!NtCreateThreadEx
+ 640   640 [3.563000] thread: 0x417C |――――――――――――――――――――――――        Frame: 6 THREAD CREATED handle: 0x7E4 id: 21136 (0x5290)
+ 641   641 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0009E620 ntdll.dll!NtCreateThreadEx
+ 642   642 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0008E100 KernelBase.dll!__security_check_cookie
+ 643   643 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0008E100 KernelBase.dll!__security_check_cookie
+ 644   644 [3.563000] thread: 0x417C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00034F00 KernelBase.dll!CreateRemoteThreadEx
+ 645   645 [3.563000] thread: 0x417C |―――――――――――――――――――― start: Frame: 5 RVA: 0x00034F00 KernelBase.dll!CreateRemoteThreadEx
+ 646   646 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00031450 KernelBase.dll!BaseFormatObjectAttributes
+ 647   647 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00031450 KernelBase.dll!BaseFormatObjectAttributes
+ 648   648 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00012DE0 ntdll.dll!RtlQueryInformationActivationContext
+ 649   649 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x00013374 ntdll.dll!RtlpGetActivationContextData
+ 650   650 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x00013374 ntdll.dll!RtlpGetActivationContextData
+ 651   651 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0001342C ntdll.dll!RtlpQueryInformationActivationContextBasicInformation
+ 652   652 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――――――― start: Frame: 8 RVA: 0x000134C0 ntdll.dll!RtlAddRefActivationContext
+ 653   653 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――――――― end:   Frame: 8 RVA: 0x000134C0 ntdll.dll!RtlAddRefActivationContext
+ 654   654 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0001342C ntdll.dll!RtlpQueryInformationActivationContextBasicInformation
+ 655   655 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00012DE0 ntdll.dll!RtlQueryInformationActivationContext
+ 656   656 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0009E620 ntdll.dll!NtCreateThreadEx
+ 657   657 [3.563000] thread: 0x417C |――――――――――――――――――――――――        Frame: 6 THREAD CREATED handle: 0x7E8 id: 21500 (0x53FC)
+ 658   658 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0009E620 ntdll.dll!NtCreateThreadEx
+ 659   659 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0008E100 KernelBase.dll!__security_check_cookie
+ 660   660 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0008E100 KernelBase.dll!__security_check_cookie
+ 661   661 [3.563000] thread: 0x417C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00034F00 KernelBase.dll!CreateRemoteThreadEx
+ 662   662 [3.563000] thread: 0x417C |―――――――――――――――――――― start: Frame: 5 RVA: 0x00001070 Saek0.exe!sub_140001070
+ 663   663 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00001060 Saek0.exe!sub_140001060
+ 664   664 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00001060 Saek0.exe!sub_140001060
+ 665   665 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+ 666   666 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+ 667   667 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+ 668   668 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+ 669   669 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00034B00 KernelBase.dll!GetLastError
+ 670   670 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00034B00 KernelBase.dll!GetLastError
+ 671   671 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 672   672 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 673   673 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 674   674 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 675   675 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 676   676 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 677   677 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 678   678 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 679   679 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+ 680   680 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+ 681   681 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+ 682   682 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+ 683   683 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002A600 KernelBase.dll!WriteFile
+ 684   684 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0009CF10 ntdll.dll!NtWriteFile
+ 685   685 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0009CF10 ntdll.dll!NtWriteFile
+ 686   686 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002A600 KernelBase.dll!WriteFile
+ 687   687 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+ 688   688 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+ 689   689 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+ 690   690 [3.563000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+ 691   691 [3.563000] thread: 0x417C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00001070 Saek0.exe!sub_140001070
+ 692   692 [3.563000] thread: 0x417C |―――――――――――――――――――― start: Frame: 5 RVA: 0x0004C490 KernelBase.dll!WaitForMultipleObjects
+ 693   693 [3.563000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0004C4B0 KernelBase.dll!WaitForMultipleObjectsEx
+ 694   694 [3.563000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0009D960 ntdll.dll!NtWaitForMultipleObjects
+7990   695 [3.594000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0009D960 ntdll.dll!NtWaitForMultipleObjects
+7991   696 [3.594000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0008E100 KernelBase.dll!__security_check_cookie
+7992   697 [3.594000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0008E100 KernelBase.dll!__security_check_cookie
+7993   698 [3.594000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0004C4B0 KernelBase.dll!WaitForMultipleObjectsEx
+7994   699 [3.594000] thread: 0x417C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0004C490 KernelBase.dll!WaitForMultipleObjects
+7995   700 [3.594000] thread: 0x417C |―――――――――――――――――――― start: Frame: 5 RVA: 0x00001070 Saek0.exe!sub_140001070
+7996   701 [3.594000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00001060 Saek0.exe!sub_140001060
+7997   702 [3.594000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00001060 Saek0.exe!sub_140001060
+7998   703 [3.594000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+7999   704 [3.594000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+8000   705 [3.594000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+8001   706 [3.594000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+8002   707 [3.594000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00034B00 KernelBase.dll!GetLastError
+8003   708 [3.594000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00034B00 KernelBase.dll!GetLastError
+8004   709 [3.594000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+8005   710 [3.594000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+8006   711 [3.594000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+8007   712 [3.594000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+8008   713 [3.594000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+8009   714 [3.594000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+8010   715 [3.594000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+8011   716 [3.594000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+8012   717 [3.594000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+8013   718 [3.594000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+8014   719 [3.594000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+8015   720 [3.594000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+8016   721 [3.594000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002A600 KernelBase.dll!WriteFile
+8017   722 [3.594000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0009CF10 ntdll.dll!NtWriteFile
+8018   723 [3.594000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0009CF10 ntdll.dll!NtWriteFile
+8019   724 [3.594000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002A600 KernelBase.dll!WriteFile
+8020   725 [3.594000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+8021   726 [3.594000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+8022   727 [3.594000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+8023   728 [3.594000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+8024   729 [3.594000] thread: 0x417C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00001070 Saek0.exe!sub_140001070
+8025   730 [3.594000] thread: 0x417C |―――――――――――――――――――― start: Frame: 5 RVA: 0x00029F70 KernelBase.dll!CloseHandle
+8026   731 [3.594000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0003E0D0 ntdll.dll!SbSelectProcedure
+8027   732 [3.594000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x000A3EC0 ntdll.dll!memset
+8028   733 [3.594000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x000A3EC0 ntdll.dll!memset
+8029   734 [3.594000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+8030   735 [3.594000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+8031   736 [3.594000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0003E0D0 ntdll.dll!SbSelectProcedure
+8032   737 [3.594000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x000629D0 KernelBase.dll!SwitchedCloseHandleNoRaiseUMException_WinBLUE
+8033   738 [3.594000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x000629D0 KernelBase.dll!SwitchedCloseHandleNoRaiseUMException_WinBLUE
+8034   739 [3.594000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0009CFF0 ntdll.dll!NtClose
+8035   740 [3.594000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0009CFF0 ntdll.dll!NtClose
+8036   741 [3.594000] thread: 0x417C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00029F70 KernelBase.dll!CloseHandle
+8037   742 [3.594000] thread: 0x417C |―――――――――――――――――――― start: Frame: 5 RVA: 0x00029F70 KernelBase.dll!CloseHandle
+8038   743 [3.594000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0003E0D0 ntdll.dll!SbSelectProcedure
+8039   744 [3.594000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x000A3EC0 ntdll.dll!memset
+8040   745 [3.594000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x000A3EC0 ntdll.dll!memset
+8041   746 [3.594000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+8042   747 [3.594000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+8043   748 [3.594000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0003E0D0 ntdll.dll!SbSelectProcedure
+8044   749 [3.594000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x000629D0 KernelBase.dll!SwitchedCloseHandleNoRaiseUMException_WinBLUE
+8045   750 [3.594000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x000629D0 KernelBase.dll!SwitchedCloseHandleNoRaiseUMException_WinBLUE
+8046   751 [3.594000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0009CFF0 ntdll.dll!NtClose
+8047   752 [3.594000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0009CFF0 ntdll.dll!NtClose
+8048   753 [3.594000] thread: 0x417C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00029F70 KernelBase.dll!CloseHandle
+8049   754 [3.594000] thread: 0x417C |―――――――――――――――――――― start: Frame: 5 RVA: 0x00029F70 KernelBase.dll!CloseHandle
+8050   755 [3.594000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0003E0D0 ntdll.dll!SbSelectProcedure
+8051   756 [3.594000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x000A3EC0 ntdll.dll!memset
+8052   757 [3.594000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x000A3EC0 ntdll.dll!memset
+8053   758 [3.594000] thread: 0x417C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+8054   759 [3.594000] thread: 0x417C |―――――――――――――――――――――――――――― end:   Frame: 7 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+8055   760 [3.594000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0003E0D0 ntdll.dll!SbSelectProcedure
+8056   761 [3.594000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x000629D0 KernelBase.dll!SwitchedCloseHandleNoRaiseUMException_WinBLUE
+8057   762 [3.594000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x000629D0 KernelBase.dll!SwitchedCloseHandleNoRaiseUMException_WinBLUE
+8058   763 [3.594000] thread: 0x417C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0009CFF0 ntdll.dll!NtClose
+8059   764 [3.594000] thread: 0x417C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0009CFF0 ntdll.dll!NtClose
+8060   765 [3.594000] thread: 0x417C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00029F70 KernelBase.dll!CloseHandle
+8061   766 [3.594000] thread: 0x417C |―――――――――――――――――――― start: Frame: 5 RVA: 0x00001590 Saek0.exe!sub_140001590
+8062   767 [3.594000] thread: 0x417C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00001590 Saek0.exe!sub_140001590
+8063   768 [3.594000] thread: 0x417C |―――――――――――――――― end:   Frame: 4 RVA: 0x00001250 Saek0.exe!main
+...
+</code></pre>
+              </div>
+            </div>
+            <p>Recorded trace of next created thread(0x512C) func1. (File is large and has been truncated. <a href="https://gist.githubusercontent.com/M3ikShizuka/99c0509cd94cc8aee4b842199a5c2145/raw/abc9e1c1cdcf086948208c2205e0802f35dd81f9/Trace_thread_0x512C.log" target="_blank">View full file.</a>)</p>
+            <div class="mzp_codeblock">
+              <div class="mzp_codeblock_page">
+                <pre> <code class="language-plaintext">...
+ 3676  1280 [3.579000] thread: 0x512C |―――――――――――― start: Frame: 3 RVA: 0x00001360 Saek0.exe!StartAddress
+ 3678  1281 [3.579000] thread: 0x512C |―――――――――――――――― start: Frame: 4 RVA: 0x00001070 Saek0.exe!sub_140001070
+ 3680  1282 [3.579000] thread: 0x512C |―――――――――――――――――――― start: Frame: 5 RVA: 0x00001060 Saek0.exe!sub_140001060
+ 3682  1283 [3.579000] thread: 0x512C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00001060 Saek0.exe!sub_140001060
+ 3684  1284 [3.579000] thread: 0x512C |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+ 3686  1285 [3.579000] thread: 0x512C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+ 3688  1286 [3.579000] thread: 0x512C |―――――――――――――――――――― start: Frame: 5 RVA: 0x00034B00 KernelBase.dll!GetLastError
+ 3690  1287 [3.579000] thread: 0x512C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00034B00 KernelBase.dll!GetLastError
+ 3692  1288 [3.579000] thread: 0x512C |―――――――――――――――――――― start: Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 3694  1289 [3.579000] thread: 0x512C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 3696  1290 [3.579000] thread: 0x512C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 3698  1291 [3.579000] thread: 0x512C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 3700  1292 [3.579000] thread: 0x512C |―――――――――――――――――――― start: Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 3702  1293 [3.579000] thread: 0x512C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 3704  1294 [3.579000] thread: 0x512C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 3706  1295 [3.579000] thread: 0x512C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 3708  1296 [3.579000] thread: 0x512C |―――――――――――――――――――― start: Frame: 5 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+ 3710  1297 [3.579000] thread: 0x512C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+ 3712  1298 [3.579000] thread: 0x512C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+ 3714  1299 [3.579000] thread: 0x512C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+ 3717  1300 [3.579000] thread: 0x512C |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+ 3719  1301 [3.579000] thread: 0x512C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+ 3721  1302 [3.579000] thread: 0x512C |―――――――――――――――――――― start: Frame: 5 RVA: 0x00034B00 KernelBase.dll!GetLastError
+ 3723  1303 [3.579000] thread: 0x512C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00034B00 KernelBase.dll!GetLastError
+ 3725  1304 [3.579000] thread: 0x512C |―――――――――――――――――――― start: Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 3728  1305 [3.579000] thread: 0x512C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 3730  1306 [3.579000] thread: 0x512C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 3732  1307 [3.579000] thread: 0x512C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 3733  1308 [3.579000] thread: 0x512C |―――――――――――――――――――― start: Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 3735  1309 [3.579000] thread: 0x512C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 3737  1310 [3.579000] thread: 0x512C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 3738  1311 [3.579000] thread: 0x512C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 3739  1312 [3.579000] thread: 0x512C |―――――――――――――――――――― start: Frame: 5 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+ 3740  1313 [3.579000] thread: 0x512C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+ 3741  1314 [3.579000] thread: 0x512C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+ 3742  1315 [3.579000] thread: 0x512C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+ 3743  1316 [3.579000] thread: 0x512C |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002A600 KernelBase.dll!WriteFile
+ 3744  1317 [3.579000] thread: 0x512C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0009CF10 ntdll.dll!NtWriteFile
+ 3762  1318 [3.579000] thread: 0x512C |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0009CF10 ntdll.dll!NtWriteFile
+ 3764  1319 [3.579000] thread: 0x512C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002A600 KernelBase.dll!WriteFile
+ 3766  1320 [3.579000] thread: 0x512C |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+ 3768  1321 [3.579000] thread: 0x512C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+ 3770  1322 [3.579000] thread: 0x512C |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+ 3772  1323 [3.579000] thread: 0x512C |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+ 3774  1324 [3.579000] thread: 0x512C |―――――――――――――――― end:   Frame: 4 RVA: 0x00001070 Saek0.exe!sub_140001070
+ 3776  1325 [3.579000] thread: 0x512C |―――――――――――――――― start: Frame: 4 RVA: 0x000014FF Saek0.exe!sub_1400014FF
+ 3778  1326 [3.579000] thread: 0x512C |―――――――――――――――――――― start: Frame: 5 RVA: 0x0000150D Saek0.exe!sub_14000150D
+ 3780  1327 [3.579000] thread: 0x512C |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0000151B Saek0.exe!sub_14000151B
+ 3782  1328 [3.579000] thread: 0x512C |―――――――――――――――――――――――――――― start: Frame: 7 RVA: 0x00001529 Saek0.exe!sub_140001529
+ 3784  1329 [3.579000] thread: 0x512C |――――――――――――――――――――――――――――        Frame: 7 POST: The stack pointer has been rewritten!
+ 3785  1330 [3.579000] thread: 0x512C |――――――――――――        Frame: 3 POST: The stack pointer has been increased!
+ 3786  1331 [3.579000] thread: 0x512C |―――――――――――――――― end:   Frame: 4 RVA: 0x000014FF Saek0.exe!sub_1400014FF
+ 3788  1332 [3.579000] thread: 0x512C |―――――――――――― end:   Frame: 3 RVA: 0x00001360 Saek0.exe!StartAddress
+...
+</code></pre>
+              </div>
+            </div>
+            <p>Recorded trace of next created thread(0x5290) func2. (File is large and has been truncated. <a href="https://gist.githubusercontent.com/M3ikShizuka/99c0509cd94cc8aee4b842199a5c2145/raw/abc9e1c1cdcf086948208c2205e0802f35dd81f9/Trace_thread_0x5290.log" target="_blank">View full file.</a>)</p>
+            <div class="mzp_codeblock">
+              <div class="mzp_codeblock_page">
+                <pre> <code class="language-plaintext">...
+ 4860  1276 [3.594000] thread: 0x5290 |―――――――――――― start: Frame: 3 RVA: 0x00001390 Saek0.exe!sub_140001390
+ 4862  1277 [3.594000] thread: 0x5290 |―――――――――――――――― start: Frame: 4 RVA: 0x00001070 Saek0.exe!sub_140001070
+ 4864  1278 [3.594000] thread: 0x5290 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00001060 Saek0.exe!sub_140001060
+ 4866  1279 [3.594000] thread: 0x5290 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00001060 Saek0.exe!sub_140001060
+ 4868  1280 [3.594000] thread: 0x5290 |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+ 4870  1281 [3.594000] thread: 0x5290 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+ 4873  1282 [3.594000] thread: 0x5290 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00034B00 KernelBase.dll!GetLastError
+ 4874  1283 [3.594000] thread: 0x5290 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00034B00 KernelBase.dll!GetLastError
+ 4876  1284 [3.594000] thread: 0x5290 |―――――――――――――――――――― start: Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 4878  1285 [3.594000] thread: 0x5290 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 4880  1286 [3.594000] thread: 0x5290 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 4882  1287 [3.594000] thread: 0x5290 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 4884  1288 [3.594000] thread: 0x5290 |―――――――――――――――――――― start: Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 4886  1289 [3.594000] thread: 0x5290 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 4888  1290 [3.594000] thread: 0x5290 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 4890  1291 [3.594000] thread: 0x5290 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 4892  1292 [3.594000] thread: 0x5290 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+ 4894  1293 [3.594000] thread: 0x5290 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+ 4896  1294 [3.594000] thread: 0x5290 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+ 4898  1295 [3.594000] thread: 0x5290 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+ 4901  1296 [3.594000] thread: 0x5290 |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+ 4903  1297 [3.594000] thread: 0x5290 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+ 4905  1298 [3.594000] thread: 0x5290 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00034B00 KernelBase.dll!GetLastError
+ 4907  1299 [3.594000] thread: 0x5290 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00034B00 KernelBase.dll!GetLastError
+ 4909  1300 [3.594000] thread: 0x5290 |―――――――――――――――――――― start: Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 4911  1301 [3.594000] thread: 0x5290 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 4913  1302 [3.594000] thread: 0x5290 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 4915  1303 [3.594000] thread: 0x5290 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 4916  1304 [3.594000] thread: 0x5290 |―――――――――――――――――――― start: Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 4918  1305 [3.594000] thread: 0x5290 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 4920  1306 [3.594000] thread: 0x5290 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 4922  1307 [3.594000] thread: 0x5290 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 4924  1308 [3.594000] thread: 0x5290 |―――――――――――――――――――― start: Frame: 5 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+ 4926  1309 [3.594000] thread: 0x5290 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+ 4928  1310 [3.594000] thread: 0x5290 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+ 4930  1311 [3.594000] thread: 0x5290 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+ 4932  1312 [3.594000] thread: 0x5290 |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002A600 KernelBase.dll!WriteFile
+ 4934  1313 [3.594000] thread: 0x5290 |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0009CF10 ntdll.dll!NtWriteFile
+ 4975  1314 [3.594000] thread: 0x5290 |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0009CF10 ntdll.dll!NtWriteFile
+ 4977  1315 [3.594000] thread: 0x5290 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002A600 KernelBase.dll!WriteFile
+ 4979  1316 [3.594000] thread: 0x5290 |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+ 4981  1317 [3.594000] thread: 0x5290 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+ 4983  1318 [3.594000] thread: 0x5290 |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+ 4985  1319 [3.594000] thread: 0x5290 |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+ 4987  1320 [3.594000] thread: 0x5290 |―――――――――――――――― end:   Frame: 4 RVA: 0x00001070 Saek0.exe!sub_140001070
+ 4989  1321 [3.594000] thread: 0x5290 |―――――――――――――――― start: Frame: 4 RVA: 0x0000152E Saek0.exe!sub_14000152E
+ 4991  1322 [3.594000] thread: 0x5290 |―――――――――――――――― end:   Frame: 4 RVA: 0x0000152E Saek0.exe!sub_14000152E
+ 4993  1323 [3.594000] thread: 0x5290 |―――――――――――― end:   Frame: 3 RVA: 0x00001390 Saek0.exe!sub_140001390
+...
+</code></pre>
+              </div>
+            </div>
+            <p>Recorded trace of next created thread(0x53FC) func3. (File is large and has been truncated. <a href="https://gist.githubusercontent.com/M3ikShizuka/99c0509cd94cc8aee4b842199a5c2145/raw/abc9e1c1cdcf086948208c2205e0802f35dd81f9/Trace_thread_0x53FC.log" target="_blank">View full file.</a>)</p>
+            <div class="mzp_codeblock">
+              <div class="mzp_codeblock_page">
+                <pre> <code class="language-plaintext">...
+ 2477  1116 [3.579000] thread: 0x53FC |―――――――――――― start: Frame: 3 RVA: 0x000013C0 Saek0.exe!sub_1400013C0
+ 2479  1117 [3.579000] thread: 0x53FC |―――――――――――――――― start: Frame: 4 RVA: 0x00001070 Saek0.exe!sub_140001070
+ 2481  1118 [3.579000] thread: 0x53FC |―――――――――――――――――――― start: Frame: 5 RVA: 0x00001060 Saek0.exe!sub_140001060
+ 2483  1119 [3.579000] thread: 0x53FC |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00001060 Saek0.exe!sub_140001060
+ 2485  1120 [3.579000] thread: 0x53FC |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+ 2487  1121 [3.579000] thread: 0x53FC |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+ 2490  1122 [3.579000] thread: 0x53FC |―――――――――――――――――――― start: Frame: 5 RVA: 0x00034B00 KernelBase.dll!GetLastError
+ 2492  1123 [3.579000] thread: 0x53FC |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00034B00 KernelBase.dll!GetLastError
+ 2494  1124 [3.579000] thread: 0x53FC |―――――――――――――――――――― start: Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 2496  1125 [3.579000] thread: 0x53FC |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 2498  1126 [3.579000] thread: 0x53FC |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 2500  1127 [3.579000] thread: 0x53FC |―――――――――――――――――――― end:   Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 2502  1128 [3.579000] thread: 0x53FC |―――――――――――――――――――― start: Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 2504  1129 [3.579000] thread: 0x53FC |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 2506  1130 [3.579000] thread: 0x53FC |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 2508  1131 [3.579000] thread: 0x53FC |―――――――――――――――――――― end:   Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 2510  1132 [3.579000] thread: 0x53FC |―――――――――――――――――――― start: Frame: 5 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+ 2512  1133 [3.579000] thread: 0x53FC |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+ 2514  1134 [3.579000] thread: 0x53FC |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+ 2516  1135 [3.579000] thread: 0x53FC |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+ 2519  1136 [3.579000] thread: 0x53FC |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+ 2520  1137 [3.579000] thread: 0x53FC |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002FAA0 ntdll.dll!RtlEnterCriticalSection
+ 2523  1138 [3.579000] thread: 0x53FC |―――――――――――――――――――― start: Frame: 5 RVA: 0x00034B00 KernelBase.dll!GetLastError
+ 2524  1139 [3.579000] thread: 0x53FC |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00034B00 KernelBase.dll!GetLastError
+ 2527  1140 [3.579000] thread: 0x53FC |―――――――――――――――――――― start: Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 2529  1141 [3.579000] thread: 0x53FC |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 2531  1142 [3.579000] thread: 0x53FC |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 2533  1143 [3.579000] thread: 0x53FC |―――――――――――――――――――― end:   Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 2535  1144 [3.579000] thread: 0x53FC |―――――――――――――――――――― start: Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 2536  1145 [3.579000] thread: 0x53FC |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 2537  1146 [3.579000] thread: 0x53FC |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x00052500 ntdll.dll!RtlFlsGetValue
+ 2538  1147 [3.579000] thread: 0x53FC |―――――――――――――――――――― end:   Frame: 5 RVA: 0x000492D0 KernelBase.dll!FlsGetValue
+ 2539  1148 [3.579000] thread: 0x53FC |―――――――――――――――――――― start: Frame: 5 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+ 2540  1149 [3.579000] thread: 0x53FC |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+ 2541  1150 [3.579000] thread: 0x53FC |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0008C240 ntdll.dll!__security_check_cookie
+ 2542  1151 [3.579000] thread: 0x53FC |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00050770 ntdll.dll!RtlSetLastWin32Error
+ 2543  1152 [3.579000] thread: 0x53FC |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002A600 KernelBase.dll!WriteFile
+ 2544  1153 [3.579000] thread: 0x53FC |―――――――――――――――――――――――― start: Frame: 6 RVA: 0x0009CF10 ntdll.dll!NtWriteFile
+ 2567  1154 [3.579000] thread: 0x53FC |―――――――――――――――――――――――― end:   Frame: 6 RVA: 0x0009CF10 ntdll.dll!NtWriteFile
+ 2570  1155 [3.579000] thread: 0x53FC |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002A600 KernelBase.dll!WriteFile
+ 2572  1156 [3.579000] thread: 0x53FC |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+ 2574  1157 [3.579000] thread: 0x53FC |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+ 2576  1158 [3.579000] thread: 0x53FC |―――――――――――――――――――― start: Frame: 5 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+ 2578  1159 [3.579000] thread: 0x53FC |―――――――――――――――――――― end:   Frame: 5 RVA: 0x0002F230 ntdll.dll!RtlLeaveCriticalSection
+ 2580  1160 [3.579000] thread: 0x53FC |―――――――――――――――― end:   Frame: 4 RVA: 0x00001070 Saek0.exe!sub_140001070
+ 2582  1161 [3.579000] thread: 0x53FC |―――――――――――――――― start: Frame: 4 RVA: 0x00001548 Saek0.exe!sub_140001548
+ 2584  1162 [3.579000] thread: 0x53FC |―――――――――――――――――――― start: Frame: 5 RVA: 0x00001568 Saek0.exe!sub_140001568
+ 2586  1163 [3.579000] thread: 0x53FC |―――――――――――――――――――― end:   Frame: 5 RVA: 0x00001568 Saek0.exe!sub_140001568
+ 2588  1164 [3.579000] thread: 0x53FC |―――――――――――――――――――― start: Frame: 5 RVA: 0x00001563 Saek0.exe!sub_140001563
+ 2590  1165 [3.579000] thread: 0x53FC |――――――――――――――――――――        Frame: 5 POST: The stack pointer has been rewritten!
+ 2591  1166 [3.579000] thread: 0x53FC |――――――――――――        Frame: 3 POST: The stack pointer has been increased!
+ 2592  1167 [3.579000] thread: 0x53FC |―――――――――――――――― end:   Frame: 4 RVA: 0x00001548 Saek0.exe!sub_140001548
+ 2594  1168 [3.579000] thread: 0x53FC |―――――――――――― end:   Frame: 3 RVA: 0x000013C0 Saek0.exe!sub_1400013C0
+...</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="footer_wrapper">
+        <p>&copy; M.D.Medvedev, 2011-2024</p>
+      </div>
+    </footer>
+  </body>
+</html>

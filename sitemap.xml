@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+	<loc>https://m3ikshizuka.github.io/</loc>
+	<lastmod>2021-08-02T19:15:17+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://m3ikshizuka.github.io/projects/vulnerability-research/</loc>
+	<lastmod>2021-08-02T19:15:21+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://m3ikshizuka.github.io/projects/shizukabi/</loc>
+	<lastmod>2021-08-02T19:15:22+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://m3ikshizuka.github.io/projects/shizukaframework/</loc>
+	<lastmod>2021-08-02T19:15:22+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://m3ikshizuka.github.io/projects/reverse-engineering/</loc>
+	<lastmod>2021-08-02T19:15:22+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://m3ikshizuka.github.io/projects/mazipware/</loc>
+	<lastmod>2021-08-02T19:15:22+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://m3ikshizuka.github.io/projects/cityevents/</loc>
+	<lastmod>2021-08-02T19:15:23+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://m3ikshizuka.github.io/projects/shizukamessage/</loc>
+	<lastmod>2021-08-02T19:15:23+01:00</lastmod>
+	<priority>0.6</priority>
+</url>
+<url>
+	<loc>https://m3ikshizuka.github.io/projects/</loc>
+	<lastmod>2021-08-02T19:15:23+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+</urlset>
