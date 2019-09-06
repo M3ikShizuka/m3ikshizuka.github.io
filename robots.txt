@@ -1,0 +1,4 @@
+User-Agent: *
+Disallow: 
+
+sitemap: https://m3ikshizuka.github.io/sitemap.xml

@@ -1,0 +1,1 @@
+.page_boxes{margin:1% 0;display:flex;flex-wrap:wrap;width:100%;justify-content:space-around;align-items:stretch;box-sizing:border-box}.page_boxes .page_box img{width:100%}@media(min-width: 1000px){.page_box_h object,.page_box_h img{margin:5% 0;height:40vw;box-sizing:border-box}}@media(max-width: 1000px){.page_box_h object,.page_box_h img{height:60vw}}
